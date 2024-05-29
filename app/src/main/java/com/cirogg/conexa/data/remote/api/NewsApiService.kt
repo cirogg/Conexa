@@ -4,6 +4,6 @@ import com.cirogg.conexa.data.model.News
 import retrofit2.http.GET
 
 interface NewsApiService {
-    @GET("/news")
+    @GET("posts")
     suspend fun getNews(): List<News>
 }

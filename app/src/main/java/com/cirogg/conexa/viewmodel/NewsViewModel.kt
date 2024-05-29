@@ -28,6 +28,10 @@ class NewsViewModel @Inject constructor(
     val errorMessage: StateFlow<String?> get() = _errorMessage
 
 
+    init {
+        fetchNews()
+    }
+
     private fun fetchNews() {
         viewModelScope.launch {
             _isLoading.value = true

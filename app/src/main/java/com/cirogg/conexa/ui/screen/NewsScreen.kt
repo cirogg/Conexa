@@ -68,7 +68,7 @@ fun NewsItem(news: News) {
     Card(modifier = Modifier.padding(8.dp)) {
         Column {
             Image(
-                painter = rememberAsyncImagePainter(model = news.thumbnail),
+                painter = rememberAsyncImagePainter(model = news.image),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()

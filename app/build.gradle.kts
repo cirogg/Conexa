@@ -1,8 +1,9 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.hilt.android) apply false
-    id("kotlin-kapt")
+    id ("com.android.application")
+    id ("kotlin-android")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -32,17 +33,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.4.3"
     }
     packaging {
         resources {
@@ -50,8 +51,8 @@ android {
         }
     }
 }
-
 kapt {
+    generateStubs = true
     correctErrorTypes = true
 }
 
@@ -75,8 +76,17 @@ dependencies {
 
     //Libs
     implementation(libs.retrofit)
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.coil.compose)
+    implementation(libs.converter.gson)
+
+    implementation(libs.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
+
+    // Dependency injection
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.1")
 }
