@@ -1,5 +1,6 @@
 package com.cirogg.conexa.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cirogg.conexa.data.model.News
@@ -18,6 +19,9 @@ class NewsViewModel @Inject constructor(
     private val _newsList = MutableStateFlow<List<News>>(emptyList())
     val newsList: StateFlow<List<News>> get() = _newsList
 
+    private val _newsDetail = MutableStateFlow<News?>(null)
+    val newsDetail: StateFlow<News?> get() = _newsDetail
+
     private val _searchQuery = MutableStateFlow("")
     val searchQuery: StateFlow<String> get() = _searchQuery
 
@@ -32,17 +36,32 @@ class NewsViewModel @Inject constructor(
         fetchNews()
     }
 
-    private fun fetchNews() {
+    fun fetchNews() {
         viewModelScope.launch {
             _isLoading.value = true
             _errorMessage.value = null
             try {
                 val news = newsRepository.fetchNews()
                 _newsList.value = news
+                Log.d("NewsViewModel", "Fetched news: $news")
             } catch (e: Exception) {
                 _errorMessage.value = e.message
+                Log.e("NewsViewModel", "Error fetching news", e)
             } finally {
                 _isLoading.value = false
+            }
+        }
+    }
+
+    fun fetchNewsById(newsId: String) {
+        viewModelScope.launch {
+            try {
+                val news = newsRepository.getNewsById(newsId)
+                _newsDetail.value = news
+                Log.d("NewsViewModel", "Fetched news detail: $news")
+            } catch (e: Exception) {
+                _errorMessage.value = e.message
+                Log.e("NewsViewModel", "Error fetching news detail", e)
             }
         }
     }

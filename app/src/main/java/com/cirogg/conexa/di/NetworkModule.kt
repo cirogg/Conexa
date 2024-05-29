@@ -1,5 +1,6 @@
 package com.cirogg.conexa.di
 
+import com.cirogg.conexa.data.model.NewsDao
 import com.cirogg.conexa.data.remote.api.NewsApiService
 import com.cirogg.conexa.data.repository.NewsRepository
 import dagger.Module
@@ -49,7 +50,8 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideNewsRepository(newsApiService: NewsApiService): NewsRepository {
-        return NewsRepository(newsApiService)
+    fun provideNewsRepository(newsApiService: NewsApiService, newsDao: NewsDao): NewsRepository {
+        return NewsRepository(newsApiService = newsApiService, newsDao = newsDao)
     }
+
 }

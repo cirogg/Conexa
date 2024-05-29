@@ -44,15 +44,17 @@ class MainActivity : ComponentActivity() {
                             onNewsSelected = {
                                 navController.navigate(
                                     NewsDetailScreenNav(
-                                        news = it
+                                        newsId = it
                                     )
                                 )
                             })
                     }
                     composable<NewsDetailScreenNav> {
-                        val args = it.toRoute<NewsDetailScreenNav>().news
+                        val args = it.toRoute<NewsDetailScreenNav>().newsId
+                        val viewModel = hiltViewModel<NewsViewModel>()
                         NewsDetailScreen(
-                            newss = args
+                            viewModel = viewModel,
+                            newsId = args
                         )
                     }
                 }
@@ -66,5 +68,5 @@ object NewsScreenNav
 
 @Serializable
 data class NewsDetailScreenNav(
-    val news: String
+    val newsId: String
 )
