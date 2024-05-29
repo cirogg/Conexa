@@ -1,8 +1,11 @@
 package com.cirogg.conexa.di
 
 import com.cirogg.conexa.data.model.NewsDao
+import com.cirogg.conexa.data.model.UsersDao
 import com.cirogg.conexa.data.remote.api.NewsApiService
+import com.cirogg.conexa.data.remote.api.UsersApiService
 import com.cirogg.conexa.data.repository.NewsRepository
+import com.cirogg.conexa.data.repository.UsersRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -53,5 +56,19 @@ object NetworkModule {
     fun provideNewsRepository(newsApiService: NewsApiService, newsDao: NewsDao): NewsRepository {
         return NewsRepository(newsApiService = newsApiService, newsDao = newsDao)
     }
+
+    @Provides
+    @Singleton
+    fun provideUsersApiService(retrofit: Retrofit): UsersApiService {
+        return retrofit.create(UsersApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUsersRepository(usersApiService: UsersApiService, usersDao: UsersDao): UsersRepository {
+        return UsersRepository(usersApiService = usersApiService, usersDao = usersDao)
+    }
+
+
 
 }

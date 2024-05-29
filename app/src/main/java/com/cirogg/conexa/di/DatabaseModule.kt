@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import com.cirogg.conexa.data.model.NewsDao
 import com.cirogg.conexa.data.model.NewsDatabase
+import com.cirogg.conexa.data.model.UsersDao
+import com.cirogg.conexa.data.model.UsersDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +19,7 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(@ApplicationContext appContext: Context): NewsDatabase {
+    fun provideNewsDatabase(@ApplicationContext appContext: Context): NewsDatabase {
         return Room.databaseBuilder(
             appContext,
             NewsDatabase::class.java,
@@ -28,5 +30,20 @@ object DatabaseModule {
     @Provides
     fun provideNewsDao(appDatabase: NewsDatabase): NewsDao {
         return appDatabase.newsDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideUsersDatabase(@ApplicationContext appContext: Context): UsersDatabase {
+        return Room.databaseBuilder(
+            appContext,
+            UsersDatabase::class.java,
+            "users_database"
+        ).build()
+    }
+
+    @Provides
+    fun provideUserssDao(appDatabase: UsersDatabase): UsersDao {
+        return appDatabase.usersDao()
     }
 }

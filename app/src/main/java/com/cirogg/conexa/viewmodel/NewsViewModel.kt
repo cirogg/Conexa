@@ -36,7 +36,7 @@ class NewsViewModel @Inject constructor(
         fetchNews()
     }
 
-    fun fetchNews() {
+    private fun fetchNews() {
         viewModelScope.launch {
             _isLoading.value = true
             _errorMessage.value = null
