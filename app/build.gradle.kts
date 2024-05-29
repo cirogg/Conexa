@@ -84,9 +84,14 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     // Dependency injection
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
-    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 
-    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.1")
+    implementation (libs.logging.interceptor)
+
+    //Room
+    implementation (libs.androidx.room.runtime)
+    kapt (libs.androidx.room.compiler)
+    implementation (libs.androidx.room.ktx)
 }

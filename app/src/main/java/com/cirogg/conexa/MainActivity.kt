@@ -11,11 +11,16 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import com.cirogg.conexa.data.model.News
+import com.cirogg.conexa.ui.screen.NewsDetailScreen
 import com.cirogg.conexa.ui.screen.NewsScreen
 import com.cirogg.conexa.ui.theme.ConexaTheme
+import com.cirogg.conexa.viewmodel.NewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.serialization.Serializable
 
@@ -31,11 +36,24 @@ class MainActivity : ComponentActivity() {
                     navController = navController,
                     startDestination = NewsScreenNav
                 ) {
+
                     composable<NewsScreenNav> {
-                        NewsScreen()
+                        val viewModel = hiltViewModel<NewsViewModel>()
+                        NewsScreen(
+                            viewModel = viewModel,
+                            onNewsSelected = {
+                                navController.navigate(
+                                    NewsDetailScreenNav(
+                                        news = it
+                                    )
+                                )
+                            })
                     }
                     composable<NewsDetailScreenNav> {
-
+                        val args = it.toRoute<NewsDetailScreenNav>().news
+                        NewsDetailScreen(
+                            newss = args
+                        )
                     }
                 }
             }
@@ -48,5 +66,5 @@ object NewsScreenNav
 
 @Serializable
 data class NewsDetailScreenNav(
-    val newsId: String
+    val news: String
 )

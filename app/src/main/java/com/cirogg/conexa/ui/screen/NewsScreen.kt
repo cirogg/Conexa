@@ -1,6 +1,7 @@
 package com.cirogg.conexa.ui.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -27,8 +28,11 @@ import com.cirogg.conexa.data.model.News
 import com.cirogg.conexa.viewmodel.NewsViewModel
 
 @Composable
-fun NewsScreen() {
-    val viewModel: NewsViewModel = viewModel()
+fun NewsScreen(
+    viewModel: NewsViewModel = viewModel(),
+    onNewsSelected: (String) -> Unit
+) {
+    //val viewModel: NewsViewModel = viewModel()
     val searchQuery by viewModel.searchQuery.collectAsState()
     val newsList by viewModel.newsList.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
@@ -55,7 +59,10 @@ fun NewsScreen() {
         } else {
             LazyColumn {
                 items(newsList) { news ->
-                    NewsItem(news)
+                    NewsItem(
+                        news = news,
+                        onNewsSelected = { onNewsSelected(news.id) }
+                    )
                 }
             }
         }
@@ -64,8 +71,13 @@ fun NewsScreen() {
 }
 
 @Composable
-fun NewsItem(news: News) {
-    Card(modifier = Modifier.padding(8.dp)) {
+fun NewsItem(
+    news: News,
+    onNewsSelected: (String) -> Unit
+){
+    Card(modifier = Modifier
+        .padding(8.dp)
+        .clickable { onNewsSelected(news.id) }) {
         Column {
             Image(
                 painter = rememberAsyncImagePainter(model = news.image),
@@ -95,10 +107,13 @@ fun NewsScreenPreview() {
     //NewsScreen()
     NewsItem(
         News(
+            id = "1",
             "Title",
             "Content",
             "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
             "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
         )
-    )
+    ) {
+
+    }
 }
