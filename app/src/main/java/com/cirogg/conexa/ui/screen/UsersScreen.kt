@@ -1,6 +1,7 @@
 package com.cirogg.conexa.ui.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -78,7 +79,7 @@ fun UserListItem(
             .padding(vertical = 8.dp, horizontal = 16.dp)
             .clickable { onUserSelected(user.id) },
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            containerColor = MaterialTheme.colorScheme.tertiary,
         ),
         elevation = CardDefaults.cardElevation(8.dp)
     ) {

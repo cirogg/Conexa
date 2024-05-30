@@ -37,7 +37,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -74,6 +74,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation("androidx.core:core-splashscreen:1.0.1")
 
     //Libs
     implementation(libs.retrofit)
@@ -101,14 +102,14 @@ dependencies {
     implementation(libs.maps.compose)
 
 // Required -- JUnit 4 framework
-    testImplementation("junit:junit:4.13")
-    testImplementation("org.mockito:mockito-core:5.2.1")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:5.12.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.3.1")
     // Optional -- Robolectric environment
     testImplementation ("androidx.test:core:1.5.0")
     testImplementation ("androidx.test:core-ktx:1.5.0")
     // Optional -- Coroutines test
-    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
     // Optional -- Core testing
     testImplementation ("androidx.arch.core:core-testing:2.2.0")
     testImplementation("io.mockk:mockk:1.13.11")

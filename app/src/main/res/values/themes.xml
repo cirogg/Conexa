@@ -2,4 +2,12 @@
 <resources>
 
     <style name="Theme.Conexa" parent="android:Theme.Material.Light.NoActionBar" />
+
+
+    <style name="Theme.Conexa.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/purple_200</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="windowSplashScreenAnimationDuration">200</item>
+        <item name="postSplashScreenTheme">@style/Theme.Conexa</item>
+    </style>
 </resources>

@@ -1,6 +1,7 @@
 package com.cirogg.conexa.ui.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -77,7 +78,7 @@ fun PreviewNewsDetailScreen() {
         publishedAt = "2021-09-01"
     )
 
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column(modifier = Modifier.padding(16.dp).background(MaterialTheme.colorScheme.tertiary)) {
         Image(
             painter = rememberAsyncImagePainter(model = sampleNews.image),
             contentDescription = null,
