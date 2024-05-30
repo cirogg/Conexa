@@ -1,4 +1,4 @@
-package com.cirogg.conexa.data.model
+package com.cirogg.conexa.data.model.news
 
 import kotlinx.serialization.Serializable
 

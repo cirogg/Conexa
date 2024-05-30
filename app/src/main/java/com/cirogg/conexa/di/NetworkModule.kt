@@ -1,7 +1,7 @@
 package com.cirogg.conexa.di
 
-import com.cirogg.conexa.data.model.NewsDao
-import com.cirogg.conexa.data.model.UsersDao
+import com.cirogg.conexa.data.model.news.NewsDao
+import com.cirogg.conexa.data.model.users.UsersDao
 import com.cirogg.conexa.data.remote.api.NewsApiService
 import com.cirogg.conexa.data.remote.api.UsersApiService
 import com.cirogg.conexa.data.repository.NewsRepository

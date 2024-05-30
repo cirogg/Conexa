@@ -1,8 +1,8 @@
 package com.cirogg.conexa.data.repository
 
-import com.cirogg.conexa.data.model.News
-import com.cirogg.conexa.data.model.NewsDao
-import com.cirogg.conexa.data.model.toEntity
+import com.cirogg.conexa.data.model.news.News
+import com.cirogg.conexa.data.model.news.NewsDao
+import com.cirogg.conexa.data.model.news.toEntity
 import com.cirogg.conexa.data.remote.api.NewsApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

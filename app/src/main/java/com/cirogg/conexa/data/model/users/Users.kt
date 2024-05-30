@@ -1,4 +1,4 @@
-package com.cirogg.conexa.data.model
+package com.cirogg.conexa.data.model.users
 
 import androidx.room.Embedded
 import kotlinx.serialization.Serializable

@@ -3,7 +3,7 @@ package com.cirogg.conexa.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cirogg.conexa.data.model.News
+import com.cirogg.conexa.data.model.news.News
 import com.cirogg.conexa.data.repository.NewsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

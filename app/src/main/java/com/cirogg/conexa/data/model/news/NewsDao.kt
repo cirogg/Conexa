@@ -1,4 +1,4 @@
-package com.cirogg.conexa.data.model
+package com.cirogg.conexa.data.model.news
 
 import androidx.room.Dao
 import androidx.room.Insert

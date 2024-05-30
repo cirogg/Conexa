@@ -2,10 +2,10 @@ package com.cirogg.conexa.di
 
 import android.content.Context
 import androidx.room.Room
-import com.cirogg.conexa.data.model.NewsDao
-import com.cirogg.conexa.data.model.NewsDatabase
-import com.cirogg.conexa.data.model.UsersDao
-import com.cirogg.conexa.data.model.UsersDatabase
+import com.cirogg.conexa.data.model.news.NewsDao
+import com.cirogg.conexa.data.model.news.NewsDatabase
+import com.cirogg.conexa.data.model.users.UsersDao
+import com.cirogg.conexa.data.model.users.UsersDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

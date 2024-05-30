@@ -1,11 +1,9 @@
 package com.cirogg.conexa
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.Observer
-import androidx.room.InvalidationTracker
-import com.cirogg.conexa.data.model.News
-import com.cirogg.conexa.data.model.NewsDao
-import com.cirogg.conexa.data.model.toEntity
+import com.cirogg.conexa.data.model.news.News
+import com.cirogg.conexa.data.model.news.NewsDao
+import com.cirogg.conexa.data.model.news.toEntity
 import com.cirogg.conexa.data.remote.api.NewsApiService
 import com.cirogg.conexa.data.repository.NewsRepository
 import com.cirogg.conexa.viewmodel.NewsViewModel
@@ -16,24 +14,15 @@ import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
-import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito
-import org.mockito.Mockito.verify
-import org.mockito.Mockito.`when`
-import org.mockito.junit.MockitoJUnitRunner
-import org.mockito.kotlin.whenever
 import org.robolectric.RobolectricTestRunner
 
 

@@ -21,9 +21,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.cirogg.conexa.R
-import com.cirogg.conexa.data.model.Address
-import com.cirogg.conexa.data.model.Geo
-import com.cirogg.conexa.data.model.Users
+import com.cirogg.conexa.data.model.users.Address
+import com.cirogg.conexa.data.model.users.Geo
+import com.cirogg.conexa.data.model.users.Users
 import com.cirogg.conexa.viewmodel.UsersViewModel
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition

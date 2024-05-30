@@ -1,14 +1,10 @@
 package com.cirogg.conexa.data.repository
 
-import android.util.Log
-import androidx.lifecycle.viewModelScope
-import com.cirogg.conexa.data.model.News
-import com.cirogg.conexa.data.model.Users
-import com.cirogg.conexa.data.model.UsersDao
-import com.cirogg.conexa.data.model.toEntity
+import com.cirogg.conexa.data.model.users.Users
+import com.cirogg.conexa.data.model.users.UsersDao
+import com.cirogg.conexa.data.model.news.toEntity
 import com.cirogg.conexa.data.remote.api.UsersApiService
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class UsersRepository (

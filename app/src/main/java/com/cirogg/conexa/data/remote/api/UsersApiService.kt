@@ -1,7 +1,6 @@
 package com.cirogg.conexa.data.remote.api
 
-import com.cirogg.conexa.data.model.News
-import com.cirogg.conexa.data.model.Users
+import com.cirogg.conexa.data.model.users.Users
 import retrofit2.http.GET
 
 interface UsersApiService {

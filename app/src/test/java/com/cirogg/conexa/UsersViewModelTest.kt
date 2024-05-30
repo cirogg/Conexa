@@ -1,11 +1,11 @@
 package com.cirogg.conexa
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.cirogg.conexa.data.model.Address
-import com.cirogg.conexa.data.model.Geo
-import com.cirogg.conexa.data.model.Users
-import com.cirogg.conexa.data.model.UsersDao
-import com.cirogg.conexa.data.model.toEntity
+import com.cirogg.conexa.data.model.users.Address
+import com.cirogg.conexa.data.model.users.Geo
+import com.cirogg.conexa.data.model.users.Users
+import com.cirogg.conexa.data.model.users.UsersDao
+import com.cirogg.conexa.data.model.news.toEntity
 import com.cirogg.conexa.data.remote.api.UsersApiService
 import com.cirogg.conexa.data.repository.UsersRepository
 import com.cirogg.conexa.viewmodel.UsersViewModel
