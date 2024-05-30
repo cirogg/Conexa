@@ -33,7 +33,7 @@ class UsersViewModel @Inject constructor(
     init {
         fetchUsers()
     }
-    private fun fetchUsers() {
+    fun fetchUsers() {
         viewModelScope.launch {
             _isLoading.value = true
             _errorMessage.value = null

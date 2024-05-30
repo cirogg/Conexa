@@ -20,6 +20,7 @@ playServicesMaps = "18.2.0"
 retrofit = "2.11.0"
 roomRuntime = "2.6.1"
 serialization = "1.6.3"
+firebaseFirestoreKtx = "25.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -51,6 +52,7 @@ maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = 
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigation" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization"}
+firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

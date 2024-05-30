@@ -58,6 +58,10 @@ class NewsViewModel @Inject constructor(
         _searchQuery.value = query
     }
 
+    fun setNewsList(newsList: List<News>) {
+        _newsList.value = newsList
+    }
+
     fun fetchNews() {
         viewModelScope.launch {
             _isLoading.value = true
