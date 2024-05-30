@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class NewsViewModel @Inject constructor(
     private val newsRepository: NewsRepository
-): ViewModel(){
+) : ViewModel() {
 
     private val _newsList = MutableStateFlow<List<News>>(emptyList())
     val newsList: StateFlow<List<News>> get() = _newsList
@@ -25,6 +25,9 @@ class NewsViewModel @Inject constructor(
     private val _searchQuery = MutableStateFlow("")
     val searchQuery: StateFlow<String> get() = _searchQuery
 
+    private val _filteredNewsList = MutableStateFlow<List<News>>(emptyList())
+    val filteredNewsList: StateFlow<List<News>> get() = _filteredNewsList
+
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> get() = _isLoading
 
@@ -33,16 +36,36 @@ class NewsViewModel @Inject constructor(
 
 
     init {
-        fetchNews()
+        viewModelScope.launch {
+            fetchNews()
+            _searchQuery.collect { query ->
+                filterNews(query)
+            }
+        }
     }
 
-    private fun fetchNews() {
+    private fun filterNews(query: String) {
+        _filteredNewsList.value = if (query.isEmpty()) {
+            _newsList.value
+        } else {
+            _newsList.value.filter {
+                it.title.contains(query, ignoreCase = true) || it.content.contains(query, ignoreCase = true)
+            }
+        }
+    }
+
+    fun setSearchQuery(query: String) {
+        _searchQuery.value = query
+    }
+
+    fun fetchNews() {
         viewModelScope.launch {
             _isLoading.value = true
             _errorMessage.value = null
             try {
                 val news = newsRepository.fetchNews()
                 _newsList.value = news
+                filterNews(_searchQuery.value) // Filtra las noticias después de obtenerlas
                 Log.d("NewsViewModel", "Fetched news: $news")
             } catch (e: Exception) {
                 _errorMessage.value = e.message

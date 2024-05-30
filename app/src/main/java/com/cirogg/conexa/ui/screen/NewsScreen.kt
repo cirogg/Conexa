@@ -2,6 +2,7 @@ package com.cirogg.conexa.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -14,11 +15,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -31,16 +34,17 @@ fun NewsScreen(
     viewModel: NewsViewModel = viewModel(),
     onNewsSelected: (String) -> Unit
 ) {
-    //val viewModel: NewsViewModel = viewModel()
     val searchQuery by viewModel.searchQuery.collectAsState()
-    val newsList by viewModel.newsList.collectAsState()
+    val newsList by viewModel.filteredNewsList.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
     val errorMessage by viewModel.errorMessage.collectAsState()
 
     Column {
         TextField(
             value = searchQuery,
-            onValueChange = {  },
+            onValueChange = {
+                viewModel.setSearchQuery(it)
+            },
             label = { Text("Search news") },
             modifier = Modifier
                 .fillMaxWidth()
@@ -56,7 +60,9 @@ fun NewsScreen(
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
         } else {
-            LazyColumn {
+            LazyColumn (
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ){
                 items(newsList) { news ->
                     NewsItem(
                         news = news,
@@ -81,6 +87,7 @@ fun NewsItem(
             Image(
                 painter = rememberAsyncImagePainter(model = news.image),
                 contentDescription = null,
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(180.dp)
@@ -110,7 +117,8 @@ fun NewsScreenPreview() {
             "Title",
             "Content",
             "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
-            "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+            "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+            "2021-09-01"
         )
     ) {
 

@@ -11,11 +11,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -44,9 +46,10 @@ import kotlinx.serialization.Serializable
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        //enableEdgeToEdge()
         setContent {
 
             val navController = rememberNavController()
@@ -62,10 +65,12 @@ class MainActivity : ComponentActivity() {
                             selectedItem = 0
                             showBottom = true
                         }
+
                         "com.cirogg.conexa.UsersScreenNav" -> {
                             selectedItem = 1
                             showBottom = true
                         }
+
                         else -> {
                             showBottom = false
                         }
@@ -77,13 +82,11 @@ class MainActivity : ComponentActivity() {
 
                 Scaffold(
                     topBar = {
-                        Text(
-                            text = "Conexa",
-                            modifier = Modifier.padding(16.dp)
-                        )
+                        TopAppBar(title = {
+                            Text("Conexa")
+                        })
                     },
                     bottomBar = {
-
                         if (showBottom) {
                             NavigationBar {
                                 items.forEachIndexed { index, item ->
@@ -133,56 +136,61 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 ) { paddingValues ->
-                    NavHost(
-                        navController = navController,
-                        startDestination = NewsScreenNav
-                    ) {
+                    Column(
+                        modifier = Modifier.padding(paddingValues)
+                            .fillMaxSize()
+                    ){
+                        NavHost(
+                            navController = navController,
+                            startDestination = NewsScreenNav
+                        ) {
 
-                        composable<NewsScreenNav> {
-                            val viewModel = hiltViewModel<NewsViewModel>()
-                            NewsScreen(
-                                viewModel = viewModel,
-                                onNewsSelected = {
-                                    navController.navigate(
-                                        NewsDetailScreenNav(
-                                            newsId = it
+                            composable<NewsScreenNav> {
+                                val viewModel = hiltViewModel<NewsViewModel>()
+                                NewsScreen(
+                                    viewModel = viewModel,
+                                    onNewsSelected = {
+                                        navController.navigate(
+                                            NewsDetailScreenNav(
+                                                newsId = it
+                                            )
                                         )
-                                    )
-                                })
-                        }
+                                    })
+                            }
 
-                        composable<NewsDetailScreenNav> {
-                            val args = it.toRoute<NewsDetailScreenNav>().newsId
-                            val viewModel = hiltViewModel<NewsViewModel>()
-                            NewsDetailScreen(
-                                viewModel = viewModel,
-                                newsId = args
-                            )
-                        }
+                            composable<NewsDetailScreenNav> {
+                                val args = it.toRoute<NewsDetailScreenNav>().newsId
+                                val viewModel = hiltViewModel<NewsViewModel>()
+                                NewsDetailScreen(
+                                    viewModel = viewModel,
+                                    newsId = args
+                                )
+                            }
 
-                        composable<UsersScreenNav> {
-                            val viewModel = hiltViewModel<UsersViewModel>()
-                            UsersScreen(
-                                viewModel = viewModel,
-                                onUserSelected = {
-                                    navController.navigate(
-                                        UsersDetailScreenNav(
-                                            userId = it
+                            composable<UsersScreenNav> {
+                                val viewModel = hiltViewModel<UsersViewModel>()
+                                UsersScreen(
+                                    viewModel = viewModel,
+                                    onUserSelected = {
+                                        navController.navigate(
+                                            UsersDetailScreenNav(
+                                                userId = it
+                                            )
                                         )
-                                    )
-                                }
-                            )
-                        }
+                                    }
+                                )
+                            }
 
-                        composable<UsersDetailScreenNav> {
-                            val args = it.toRoute<UsersDetailScreenNav>().userId
-                            val viewModel = hiltViewModel<UsersViewModel>()
-                            UserDetailScreen(
-                                viewModel = viewModel,
-                                userId = args
-                            )
-                        }
+                            composable<UsersDetailScreenNav> {
+                                val args = it.toRoute<UsersDetailScreenNav>().userId
+                                val viewModel = hiltViewModel<UsersViewModel>()
+                                UserDetailScreen(
+                                    viewModel = viewModel,
+                                    userId = args
+                                )
+                            }
 
+                        }
                     }
                 }
             }

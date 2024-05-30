@@ -94,4 +94,8 @@ dependencies {
     implementation (libs.androidx.room.runtime)
     kapt (libs.androidx.room.compiler)
     implementation (libs.androidx.room.ktx)
+
+    //Maps
+    implementation(libs.play.services.maps)
+    implementation(libs.maps.compose)
 }

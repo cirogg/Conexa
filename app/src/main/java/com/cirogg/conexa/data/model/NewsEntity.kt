@@ -10,9 +10,10 @@ data class NewsEntity(
     val title: String,
     val content: String,
     val image: String,
-    val thumbnail: String
+    val thumbnail: String,
+    val publishedAt: String
 ) {
-    fun toNews() = News(id, title, content, image, thumbnail)
+    fun toNews() = News(id, title, content, image, thumbnail, publishedAt)
 }
 
-fun News.toEntity() = NewsEntity(id, title, content, image, thumbnail)
+fun News.toEntity() = NewsEntity(id, title, content, image, thumbnail, publishedAt)
