@@ -4,9 +4,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,31 +36,47 @@ fun NewsDetailScreen(
     }
 
     newsDetail.value?.let { news ->
-        Column(modifier = Modifier.padding(16.dp)) {
-            Image(
-                painter = rememberAsyncImagePainter(model = news.image),
-                contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(240.dp)
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                text = news.title,
-                style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-            Text(
-                text = news.content,
-                style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-            Text(
-                text = news.publishedAt,
-                style = MaterialTheme.typography.labelSmall,
-                modifier = Modifier.fillMaxWidth(),
-                textAlign = TextAlign.End
-            )
+        LazyColumn(
+            modifier = Modifier
+                .background(MaterialTheme.colorScheme.tertiary)
+                .fillMaxSize(),
+        ) {
+            item {
+                Column (
+                    Modifier.padding(16.dp)
+                ) {
+
+
+                    Image(
+                        painter = rememberAsyncImagePainter(model = news.image),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(240.dp)
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Text(
+                        text = news.title,
+                        style = MaterialTheme.typography.titleLarge,
+                        modifier = Modifier.padding(bottom = 8.dp),
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    Text(
+                        text = news.content,
+                        style = MaterialTheme.typography.bodyLarge,
+                        modifier = Modifier.padding(bottom = 8.dp),
+                        color = MaterialTheme.colorScheme.onSurface
+
+                    )
+                    Text(
+                        text = news.publishedAt,
+                        style = MaterialTheme.typography.labelSmall,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.End,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                }
+            }
         }
     } ?: run {
         Text("Noticia no encontrada", style = MaterialTheme.typography.titleSmall)
@@ -77,7 +95,11 @@ fun PreviewNewsDetailScreen() {
         publishedAt = "2021-09-01"
     )
 
-    Column(modifier = Modifier.padding(16.dp).background(MaterialTheme.colorScheme.tertiary)) {
+    Column(
+        modifier = Modifier
+            .padding(16.dp)
+            .background(MaterialTheme.colorScheme.tertiary)
+    ) {
         Image(
             painter = rememberAsyncImagePainter(model = sampleNews.image),
             contentDescription = null,

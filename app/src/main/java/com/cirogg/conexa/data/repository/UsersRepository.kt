@@ -2,7 +2,7 @@ package com.cirogg.conexa.data.repository
 
 import com.cirogg.conexa.data.model.users.Users
 import com.cirogg.conexa.data.model.users.UsersDao
-import com.cirogg.conexa.data.model.news.toEntity
+import com.cirogg.conexa.data.model.users.toEntity
 import com.cirogg.conexa.data.remote.api.UsersApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

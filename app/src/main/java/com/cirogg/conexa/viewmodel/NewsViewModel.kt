@@ -49,7 +49,8 @@ class NewsViewModel @Inject constructor(
             _newsList.value
         } else {
             _newsList.value.filter {
-                it.title.contains(query, ignoreCase = true) || it.content.contains(query, ignoreCase = true)
+                it.title.contains(query, ignoreCase = true)
+                        || it.content.contains(query, ignoreCase = true)
             }
         }
     }

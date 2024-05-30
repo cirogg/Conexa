@@ -86,7 +86,7 @@ data class NewsDetailScreenNav(
 
 @Serializable
 object UsersScreenNav{
-    const val route = "com.cirogg.conexa.navigation.UsersScreenNav"
+    val route = "com.cirogg.conexa.navigation.UsersScreenNav"
 }
 
 @Serializable

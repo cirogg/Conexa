@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -41,9 +42,9 @@ fun NewsScreen(
     val errorMessage by viewModel.errorMessage.collectAsState()
 
     Column(
-        modifier = Modifier.background(color = MaterialTheme.colorScheme.primary)
+        modifier = Modifier.background(color = MaterialTheme.colorScheme.tertiary)
     ) {
-        TextField(
+        OutlinedTextField(
             value = searchQuery,
             onValueChange = {
                 viewModel.setSearchQuery(it)
@@ -52,10 +53,7 @@ fun NewsScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp),
-            colors = TextFieldDefaults.colors(
-                focusedContainerColor = MaterialTheme.colorScheme.tertiary,
-                unfocusedContainerColor = MaterialTheme.colorScheme.secondary,
-            )
+
         )
 
         if (isLoading) {
@@ -91,7 +89,7 @@ fun NewsItem(
         .padding(8.dp)
         .clickable { onNewsSelected(news.id) }) {
         Column (
-            modifier = Modifier.background(MaterialTheme.colorScheme.tertiary)
+            modifier = Modifier.background(MaterialTheme.colorScheme.secondary)
         ){
             Image(
                 painter = rememberAsyncImagePainter(model = news.image),
@@ -103,7 +101,7 @@ fun NewsItem(
             )
             Text(
                 text = news.title,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier.padding(8.dp)
             )
             Text(
