@@ -101,17 +101,13 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.maps.compose)
 
-// Required -- JUnit 4 framework
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("org.mockito:mockito-core:5.12.0")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:5.3.1")
-    // Optional -- Robolectric environment
-    testImplementation ("androidx.test:core:1.5.0")
-    testImplementation ("androidx.test:core-ktx:1.5.0")
-    // Optional -- Coroutines test
-    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
-    // Optional -- Core testing
-    testImplementation ("androidx.arch.core:core-testing:2.2.0")
-    testImplementation("io.mockk:mockk:1.13.11")
-    testImplementation ("org.robolectric:robolectric:4.11")
+    testImplementation(libs.junit)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation (libs.androidx.core)
+    testImplementation (libs.core.ktx)
+    testImplementation (libs.kotlinx.coroutines.test)
+    testImplementation (libs.androidx.core.testing)
+    testImplementation(libs.mockk)
+    testImplementation (libs.robolectric)
 }

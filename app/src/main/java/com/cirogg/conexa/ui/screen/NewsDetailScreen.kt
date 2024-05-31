@@ -79,7 +79,7 @@ fun NewsDetailScreen(
             }
         }
     } ?: run {
-        Text("Noticia no encontrada", style = MaterialTheme.typography.titleSmall)
+        Text("News not found", style = MaterialTheme.typography.titleSmall)
     }
 }
 

@@ -6,6 +6,7 @@ import com.cirogg.conexa.data.model.users.Geo
 import com.cirogg.conexa.data.model.users.Users
 import com.cirogg.conexa.data.model.users.UsersDao
 import com.cirogg.conexa.data.model.news.toEntity
+import com.cirogg.conexa.data.model.users.toEntity
 import com.cirogg.conexa.data.remote.api.UsersApiService
 import com.cirogg.conexa.data.repository.UsersRepository
 import com.cirogg.conexa.viewmodel.UsersViewModel

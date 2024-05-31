@@ -70,11 +70,9 @@ class NewsViewModel @Inject constructor(
             try {
                 val news = newsRepository.fetchNews()
                 _newsList.value = news
-                filterNews(_searchQuery.value) // Filtra las noticias después de obtenerlas
-                Log.d("NewsViewModel", "Fetched news: $news")
+                filterNews(_searchQuery.value)
             } catch (e: Exception) {
                 _errorMessage.value = e.message
-                Log.e("NewsViewModel", "Error fetching news", e)
             } finally {
                 _isLoading.value = false
             }
@@ -86,10 +84,8 @@ class NewsViewModel @Inject constructor(
             try {
                 val news = newsRepository.getNewsById(newsId)
                 _newsDetail.value = news
-                Log.d("NewsViewModel", "Fetched news detail: $news")
             } catch (e: Exception) {
                 _errorMessage.value = e.message
-                Log.e("NewsViewModel", "Error fetching news detail", e)
             }
         }
     }
