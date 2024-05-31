@@ -30,6 +30,7 @@ Este proyecto fue construido utilizando las siguientes tecnologías:
 - [Material Design](https://material.io/design) - Principios de diseño
 - [Coil](https://coil-kt.github.io/coil/) - Librería para carga de imágenes
 - [Compose Navigation ALPHA](https://developer.android.com/reference/androidx/navigation/package-summary) - Librería nueva de Compose navigation
+- [Mockito](https://site.mockito.org/) - Librería para testing
 
 ## Aclaraciones
 
@@ -41,6 +42,8 @@ Entre HILT y KOIN fui por HILT primero que nada porque es con la que mas cómodo
 
 La data que la API devuelve, tanto de noticias como de usuarios, son almacenadas con ROOM en el dispositivo cada vez que se consume. En caso de encontrar algun conflicto la sobreescribe.
 Para mostrar el detalle simplemente navego comunicando un ID y recupero de ROOM el objeto entero para luego mostrarlo. No hay navegacion con Serializables. Primero porque no es lo recomendado y segundo porque la librería de navegación todavía no esta tan preparada para usar Serializables. (Siempre se puede mandar un json como string igualmente).
+
+El testing esta hecho con Mockito.
 
 La app, con el dolor de ojos correspondiente, es responsiva. También contempla el modo landscape. Los layouts son todos iguales en ambas direcciones salvo el del detalle del usuario. Ahí cambia la distribución para aprovechar mas el espacio.
 
